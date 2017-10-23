@@ -1,48 +1,10 @@
 var Swagger = require('swagger-js-2.x');
 var open = require('open');
 var rp = require('request-promise');
-var request = require('request')
-
-var record = require('node-record-lpcm16')
-var fs = require('fs')
-
-var witToken = process.env.WIT_TOKEN; // get one from wit.ai!
+var sp = require('./speech');
 
 
-//var file = fs.createWriteStream('test3.wav', {encoding: 'binary'});
-//record.start().pipe(file);
-console.log('start')
-transToText();
-
-/*
-file.on('finish', function(){
-    console.log('end')
-    transToText();
-})*/
-
-function transToText() {
-    var file2 = fs.readFile('test3.wav', function (err, data) {
-       
-            console.log(data.length);
-
-            request.post({
-                'url': 'https://speech.platform.bing.com/speech/recognition/interactive/cognitiveservices/v1?language=zh-CN&format=detailed',
-                'headers': {
-                    'Ocp-Apim-Subscription-Key': '9413bb40c5b54537b3c9b6f354f0a303',
-                    'Transfer-Encoding': 'chunked',
-                    'Content-Type': 'audio/wav; codec=audio/pcm; samplerate=16000'
-                },
-                body: data
-            }, function (err, resp, body) {
-                console.log('结果' + body)
-            })
-
-        });
-
-
-}
-
-return;
+//sp.speech(function(date){})
 
 // Config settings
 var directLineSecret = 'JMn4k7BC0yg.cwA.XHM.2XFSY3hDmQlPgog1B59CHM0Tc5p1xak3siBHC52WwUA';
